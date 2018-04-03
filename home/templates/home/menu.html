@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <title>gephisite</title>
+</head>
+
+{% load staticfiles %}
+
+<body>
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <div id="menu">
+        <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#news">Presentazione</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+                <ul>
+                    <li><a href="#username">{{ user.get_username }}</a></li>>
+                    <li><a class="active" href="{% url 'logout' %}">Logout</a></li>
+                        <!--<ul>
+                            <li><a href="#">Submenu 1</a></li>
+                        </ul>-->
+                </ul>
+        </ul>
+	</div>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
