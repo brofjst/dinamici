@@ -16,11 +16,21 @@
             <li><a href="#contact">Contact</a></li>
             <li><a href="#about">About</a></li>
                 <ul>
-                    <li><a href="#username">{{ user.get_username }}</a></li>>
-                    <li><a class="active" href="{% url 'logout' %}">Logout</a></li>
-                        <!--<ul>
-                            <li><a href="#">Submenu 1</a></li>
-                        </ul>-->
+                    {% if user.get_username == 'admin' %}
+                        <div class="panel">
+                            <!--<li><a href="#username">{{ user.get_username }}</a></li>-->
+                            <button class="userbtn">{{ user.get_username }}</button>
+                            <div class="dropdown">
+                                <li><a href="{% url 'admin:index' %}">pannello</a></li>
+                            </div>
+                        </div>
+                    {% else %}
+                        <button class="userbtn">{{ user.get_username }}</button>
+                    {% endif %}
+
+                    <div class="logout">
+                        <li><a class="active" href="{% url 'logout' %}">Logout</a></li>
+                    </div>
                 </ul>
         </ul>
 	</div>
