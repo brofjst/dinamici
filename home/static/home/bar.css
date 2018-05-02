@@ -1,0 +1,49 @@
+div#leftbox{
+    float: left;
+    width: 35%;
+    overflow: hidden;
+}
+
+div#bar ol
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height:92.5%;
+    background-color: rgb(1, 82, 86);
+    position: fixed;
+    overflow-y: scroll;
+}
+ 
+div#bar ol li
+{
+    margin:0;padding:0;
+}
+ 
+div#bar a
+{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    text-decoration:none;
+    padding-left:5px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    background-color: rgb(1, 82, 86);
+    color: white;
+}
+ 
+div#bar a:hover
+{
+    background-color: rgb(0, 185, 127);
+    color: #fff;
+}
+
+div#bar a.text{
+    border: 1px solid #2693FF;
+    color: #00FFFF;
+}
+
+div#bar a.text:hover{
+    background-color: rgb(1, 82, 86);
+}

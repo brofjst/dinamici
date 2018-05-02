@@ -9,11 +9,21 @@
 
 {% load staticfiles %}
 
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'home/menu.css' %}" />
     <div id="menu">
         <ul>
-            <a class="active" href="#home">Home</a>
+            <a href="/home/">Home</a>
             <a href="#news">Presentazione</a>
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
