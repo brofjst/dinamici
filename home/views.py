@@ -1,45 +1,38 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.shortcuts import render
 from management.models import Dipendente
+
 
 @login_required(login_url='/authentication/login/')
 def index(request):
-    if request.method == 'GET': # If the form is submitted
-        search_user = request.GET.get('searchuser', None)
-        search_role = request.GET.get('searchrole', None)
-        search_city = request.GET.get('searchcity', None)
+    if request.method == 'GET':
+        search_user = request.GET.get('searchuser', "").upper()
+        search_role = request.GET.get('searchrole', "").upper()
+        search_city = request.GET.get('searchcity', "").upper()
 
-        query = 0
+        try:
+            query = Dipendente.objects.all()
 
-        if search_user != "":
-            if query == 0:
-                query = Dipendente.objects.filter(nick=search_user)
-            else:
-                query = query.objects.filter(nick=search_user)
+        except:
+            print("not in database")
 
-        if search_role != "":
-            if query == 0:
-                query = Dipendente.objects.filter(ruolo=search_role)
-            else:
-                query = query.objects.filter(nick=search_role)
-
-        if search_city != "":
-            if query == 0:
-                query = Dipendente.objects.filter(sede=search_city)
-            else:
-                query = query.objects.filter(nick=search_city)
-
-        """try:
-            for dip in Dipendente.objects.filter(nick=search_user, ruolo=search_role, sede=search_city):
-                list.append(str(dip))
-        except Dipendente.DoesNotExist:
-            print("Apress isn't in the database yet.")
+        # rimuovo dalla query tutto ciò che non matcha grazie a Q che opera da NOT
         else:
-            print (list)
-        """
+            if search_user != "":
+                query = query.exclude(~Q(nick=search_user))
 
-        query = str(query)
+            if search_role != "":
+                query = query.exclude(~Q(ruolo=search_role))
 
-        print (query)
+            if search_city != "":
+                query = query.exclude(~Q(sede=search_city))
+
+        # inserisco i risultati in un dizionario
+        result = {}
+        for k in query:
+            result[k] = k.ruolo, k.sede
+
+        return render(request,'home/index.html', result)
 
     return render(request, 'home/index.html', {})

@@ -1,6 +1,7 @@
 body {
     background-color: rgb(216, 223, 234);
     margin: 0;
+    width: 100%;
 }
 
 #menu ul {
