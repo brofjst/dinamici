@@ -55,7 +55,11 @@
             </form>
         </div>
         <div id="textbox">
-            <textarea id="area""></textarea>
+            <textarea id="area" readonly>
+                {% for key, value in result.items %}
+                {{key}} {{value}}
+                {% endfor %}
+            </textarea>
         </div>
     </div>
     {% endblock %}

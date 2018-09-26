@@ -2,6 +2,12 @@ div#leftbox{
     float: left;
     width: 25%;
     overflow: hidden;
+    position: static;
+    height: 0%;
+}
+
+div#bar{
+    position: static;
 }
 
 div#bar ol
@@ -10,9 +16,9 @@ div#bar ol
     margin: 0;
     padding: 0;
     width: 25%;
-    height:92.5%;
+    height: 92%;
     background-color: rgb(1, 82, 86);
-    position: fixed;
+    position: absolute;
     overflow-y: scroll;
 }
  
