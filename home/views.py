@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render
 from management.models import Dipendente
-from django.shortcuts import render_to_response
+
 
 @login_required(login_url='/authentication/login/')
 def index(request):
@@ -17,7 +17,7 @@ def index(request):
 
         if not checkinput(search_user, search_role, search_city):
             result['Error'] = "item not in database"
-            return render_to_response('home/index.html', {'result': result})
+            return render(request, 'home/index.html', {'result': result})
 
         try:
             query = Dipendente.objects.all()
@@ -40,7 +40,7 @@ def index(request):
         for k in query:
             result[k] = k.ruolo, k.sede
 
-        return render_to_response('home/index.html', {'result': result})  # passo il dizionario al template
+        return render(request, 'home/index.html', {'result': result})
 
     return render(request, 'home/index.html', {})
 
