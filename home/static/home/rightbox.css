@@ -11,6 +11,7 @@ div#rightbox {
 }
 
 #area {
+    margin: 10px;
     resize: none;
     width: 100%;
     height: 100%;

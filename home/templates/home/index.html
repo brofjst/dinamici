@@ -48,15 +48,30 @@
         <form type="get" action="." style="margin: 0">
             <input  id="searchuser" type="text" name="searchuser"  placeholder="User..." >
             <input  id="searchrole" type="text" name="searchrole"  placeholder="Role..." >
-            <input  id="searchcity" type="text" name="searchcity"  placeholder="City..." >
+            <select id="searchcity" name="searchcity">
+                <option value=""></option>
+                <option value="BANCA DI SASSARI">BANCA DI SASSARI</option>
+                <option value="BANCA POPOLARE DELL'EMILIA ROMAGNA">BANCA POPOLARE DELL'EMILIA ROMAGNA</option>
+                <option value="BANCO DI SARDEGNA">BANCO DI SARDEGNA</option>
+                <option value="BPER CREDIT MANAGEMENT S.C.P.A.">BPER CREDIT MANAGEMENT S.C.P.A.</option>
+                <option value="BPER SERVICES S.C.P.A.">BPER SERVICES S.C.P.A.</option>
+                <option value="BPER TRUST COMPANY">BPER TRUST COMPANY</option>
+                <option value="CASSA DI RISPARMIO DI BRA S.P.A.">CASSA DI RISPARMIO DI BRA S.P.A.</option>
+                <option value="EMIL.RO FACTOR">EMIL.RO FACTOR</option>
+                <option value="FAP - FONDO AGGIUNTIVO PENSIONI BDS">FAP - FONDO AGGIUNTIVO PENSIONI BDS</option>
+                <option value="ITALIANA VALORIZZAZIONI IMMOBILIARI SRL">ITALIANA VALORIZZAZIONI IMMOBILIARI SRL</option>
+                <option value="OPTIMA S.P.A.">OPTIMA S.P.A.</option>
+                <option value="SARDALEASING SPA">SARDALEASING SPA</option>
+                <option value="SIFA' SOC. ITALIANA FLOTTE AZIENDALI SPA">SIFA' SOC. ITALIANA FLOTTE AZIENDALI SPA</option>
+            </select>
             <button id="search_submit" type="submit" >Submit</button>
         </form>
     </div>
     <div id="textbox">
         <textarea id="area" readonly>
-            {% for key, value in result.items %}
-            {{key}} {{value}}
-            {% endfor %}
+{% for key, value in result.items %}
+{{key}} {{value}}
+{% endfor %}
         </textarea>
     </div>
 </div>

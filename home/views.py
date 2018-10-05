@@ -7,13 +7,16 @@ from management.models import Dipendente
 @login_required(login_url='/authentication/login/')
 def index(request):
     if request.method == 'GET':
-        search_user = request.GET.get('searchuser', "").upper()
-        search_role = request.GET.get('searchrole', "").upper()
-        search_city = request.GET.get('searchcity', "").upper()
+        search_user = request.GET.get('searchuser', "").upper().strip()
+        search_role = request.GET.get('searchrole', "").upper().strip()
+        search_city = request.GET.get('searchcity', "")
         result = {}
 
         if search_user == "" and search_role == "" and search_city == "":
             return render(request, 'home/index.html', {})
+
+        if search_user != "" and search_user[0] != "U":  # inserisce la U se inserito solo il numero identificativo
+            search_user = "U" + search_user
 
         if not checkinput(search_user, search_role, search_city):
             result['Error'] = "item not in database"
@@ -51,7 +54,7 @@ def checkinput(search_user, search_role, search_city):
         try:
             Dipendente.objects.get(nick=search_user)
         except:
-            return False
+            return False  # quà il check non serve siccome il metodo get si aspetta un unico elemento
 
     if search_role != "":
         try:
